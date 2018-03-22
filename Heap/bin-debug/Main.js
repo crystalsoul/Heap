@@ -126,33 +126,36 @@ var Main = (function () {
         objCam.name = "mainCamera";
         this.scene.addChild(objCam);
         this.camera = objCam.gameObject.addComponent("Camera");
-        this.camera.CullingMask = egret3d.framework.CullingMask.UserLayer2;
+        this.camera.CullingMask = egret3d.framework.CullingMask.UserLayer1;
+        this.camera.calcProjectMatrix;
         this.camera.near = 0.01;
         this.camera.far = 100;
-        this.camera.order = 1;
+        this.camera.order = 0;
         this.camera.backgroundColor = new egret3d.math.Color(0.0, 0.0, 0.0, 1.0);
-        this.camera.clearOption_Color = false; // 渲染前不清除颜色缓冲，保证上一个相机的绘制结果不会被清除
+        //this.camera.clearOption_Color = false; // 渲染前不清除颜色缓冲，保证上一个相机的绘制结果不会被清除
         this.camera.clearOption_Depth = true; // 清除深度缓冲，避免深度缓冲冲突
-        objCam.setLocalPosition(0, 2.25, 5);
-        objCam.lookAt(new egret3d.math.Vector3());
         // 显示内置cube
         var cube = this.cube = new egret3d.framework.Transform(); //创建一个transform
-        cube.name = "cube"; //设定名字（可以不设定）
+        cube.name = "base"; //设定名字（可以不设定）
+        cube.setLocalPosition(0, 0, 0);
+        cube.setLocalEulerAngles(0, 45, 0);
+        objCam.setLocalPosition(0, 3.05, -2.8);
+        //objCam.lookAt(new egret3d.math.Vector3());
+        objCam.setLocalEulerAngles(41, 0, 0);
         var mesh = cube.gameObject.addComponent(egret3d.framework.StringUtil.COMPONENT_MESHFILTER); // 为其添加一个meshFilter组件
         var smesh = egret3d.framework.DefaultMeshes.Cube; //获取引擎内置的cube模型
         mesh.mesh = smesh; //赋值给meshFilter组件
         var _renderer = cube.gameObject.addComponent(egret3d.framework.StringUtil.COMPONENT_MESHRENDER); // 添加meshRender组件，用来渲染盒子
-        cube.gameObject.addComponent("BoxCollider");
-        //cube.setLocalEulerAngles(45, 45, 0);
+        //cube.gameObject.addComponent("BoxCollider");
         this.scene.addChild(cube); // 将盒子添加到场景中去
-        // 挂载材质贴图
+        //挂载材质贴图
         var texture = RES.getRes("logo.png");
         var mat = new egret3d.framework.Material();
         mat.setShader(egret3d.framework.DefaultShaders.Diffuse);
         mat.setTexture("_MainTex", texture);
         _renderer.materials = [];
         _renderer.materials[0] = mat;
-        _renderer.renderLayer = egret3d.framework.CullingMask.UserLayer2;
+        _renderer.renderLayer = egret3d.framework.CullingMask.UserLayer1;
     };
     Main.prototype.onUpdate = function (delta) {
         // this.timer += delta;
