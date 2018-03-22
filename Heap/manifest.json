@@ -6,7 +6,8 @@
 		"libs/modules/resourcemanager/resourcemanager.js",
 		"libs/modules/egret3d/egret3d.js",
 		"libs/modules/socket/socket.js",
-		"promise/bin/promise.js"
+		"promise/bin/promise.js",
+		"egretad/bin/egretad.js"
 	],
 	"game": [
 		"bin-debug/Main.js"

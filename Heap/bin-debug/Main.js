@@ -114,44 +114,11 @@ var Main = (function () {
                         return [4 /*yield*/, RES.getResAsync("logo.png")];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, RES.getResAsync("D2Resource/assets/egret_icon.png")];
-                    case 3:
-                        _a.sent();
-                        return [4 /*yield*/, RES.getResAsync("D2Resource/assets/bg.jpg")];
-                    case 4:
-                        _a.sent();
-                        return [4 /*yield*/, RES.loadGroup("preload")];
-                    case 5:
-                        _a.sent();
-                        this.createBgUI();
                         this.create3DScene();
-                        this.createMaskUI();
                         return [2 /*return*/];
                 }
             });
         });
-    };
-    Main.prototype.createBgUI = function () {
-        //添加一个摄像机
-        var objCam = new egret3d.framework.Transform();
-        objCam.name = "mainCamera";
-        this.scene.addChild(objCam);
-        var camera = objCam.gameObject.addComponent("Camera");
-        camera.CullingMask = egret3d.framework.CullingMask.UserLayer1;
-        camera.order = 0;
-        camera.backgroundColor = new egret3d.math.Color(0.0, 0.0, 0.0, 1.0);
-        var transform = new egret3d.framework.Transform();
-        transform.name = "TransformForEgret2D";
-        var renderer = transform.gameObject.addComponent("Egret2DRenderer");
-        renderer.renderLayer = egret3d.framework.CullingMask.UserLayer1;
-        var adapter = new egret3d.framework.MatchWidthOrHeightAdapter();
-        renderer.screenAdapter = adapter;
-        this.renderer1 = renderer;
-        this.scene.addChild(transform);
-        var bg = this.createBitmapByName("D2Resource/assets/bg.jpg");
-        bg.width = 640;
-        bg.height = 1136;
-        renderer.root.addChild(bg);
     };
     Main.prototype.create3DScene = function () {
         //添加一个摄像机
@@ -166,7 +133,6 @@ var Main = (function () {
         this.camera.backgroundColor = new egret3d.math.Color(0.0, 0.0, 0.0, 1.0);
         this.camera.clearOption_Color = false; // 渲染前不清除颜色缓冲，保证上一个相机的绘制结果不会被清除
         this.camera.clearOption_Depth = true; // 清除深度缓冲，避免深度缓冲冲突
-        // objCam.localTranslate = new egret3d.math.Vector3(0, 2.25, 5);
         objCam.setLocalPosition(0, 2.25, 5);
         objCam.lookAt(new egret3d.math.Vector3());
         // 显示内置cube
@@ -177,9 +143,7 @@ var Main = (function () {
         mesh.mesh = smesh; //赋值给meshFilter组件
         var _renderer = cube.gameObject.addComponent(egret3d.framework.StringUtil.COMPONENT_MESHRENDER); // 添加meshRender组件，用来渲染盒子
         cube.gameObject.addComponent("BoxCollider");
-        // cube.localEulerAngles = new egret3d.math.Vector3(45, 45, 0); //给盒子一定的旋转角度
-        cube.setLocalEulerAngles(45, 45, 0);
-        // cube.markDirty(); //标记dirty，这样引擎就会去去更新一次这个cube
+        //cube.setLocalEulerAngles(45, 45, 0);
         this.scene.addChild(cube); // 将盒子添加到场景中去
         // 挂载材质贴图
         var texture = RES.getRes("logo.png");
@@ -190,158 +154,16 @@ var Main = (function () {
         _renderer.materials[0] = mat;
         _renderer.renderLayer = egret3d.framework.CullingMask.UserLayer2;
     };
-    Main.prototype.createMaskUI = function () {
-        var _this = this;
-        var transform = new egret3d.framework.Transform();
-        transform.name = "TransformForEgret2D";
-        var renderer = transform.gameObject.addComponent("Egret2DRenderer");
-        renderer.renderLayer = egret3d.framework.CullingMask.UserLayer2;
-        var adapter = new egret3d.framework.MatchWidthOrHeightAdapter();
-        adapter.matchFactor = 0;
-        renderer.screenAdapter = adapter;
-        this.renderer2 = renderer;
-        this.scene.addChild(transform);
-        var topMask = new egret.Shape();
-        topMask.graphics.beginFill(0x000000, 0.5);
-        topMask.graphics.drawRect(0, 0, 640, 172);
-        topMask.graphics.endFill();
-        topMask.y = 33;
-        renderer.root.addChild(topMask);
-        var icon = this.createBitmapByName("D2Resource/assets/egret_icon.png");
-        renderer.root.addChild(icon);
-        icon.x = 26;
-        icon.y = 33;
-        var line = new egret.Shape();
-        line.graphics.lineStyle(2, 0xffffff);
-        line.graphics.moveTo(0, 0);
-        line.graphics.lineTo(0, 117);
-        line.graphics.endFill();
-        line.x = 172;
-        line.y = 61;
-        renderer.root.addChild(line);
-        var colorLabel = new egret.TextField();
-        colorLabel.textColor = 0xffffff;
-        colorLabel.width = 640 - 172;
-        colorLabel.textAlign = "center";
-        colorLabel.text = "Hello Egret & Egret3D";
-        colorLabel.size = 24;
-        colorLabel.x = 172;
-        colorLabel.y = 80;
-        renderer.root.addChild(colorLabel);
-        var textfield = new egret.TextField();
-        renderer.root.addChild(textfield);
-        textfield.alpha = 1;
-        textfield.width = 640 - 172;
-        textfield.textAlign = egret.HorizontalAlign.CENTER;
-        textfield.size = 24;
-        textfield.textColor = 0xffffff;
-        textfield.x = 172;
-        textfield.y = 135;
-        this.textfield = textfield;
-        this.startAnimation();
-        var mask = new egret.Shape();
-        mask.graphics.beginFill(0x000000, 0.5);
-        mask.graphics.drawRect(0, 0, 100, 100);
-        mask.graphics.endFill();
-        renderer.root.addChild(mask);
-        mask.touchEnabled = true;
-        this.mask = mask;
-        mask.addEventListener(egret.TouchEvent.TOUCH_END, function () {
-            _this.showPannel("mask Click!");
-        }, this);
-        var assetAdapter = new AssetAdapter();
-        egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
-        egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
-        var theme = new eui.Theme("resource/D2Resource/default.thm.json", renderer.stage);
-        theme.addEventListener(eui.UIEvent.COMPLETE, this.onThemeLoadComplete, this);
-    };
-    Main.prototype.onThemeLoadComplete = function () {
-        var renderer = this.renderer2;
-        this.uiLayer = new eui.UILayer();
-        this.uiLayer.touchEnabled = false;
-        renderer.root.addChild(this.uiLayer);
-        var button = new eui.Button();
-        button.label = "Click!";
-        button.horizontalCenter = 0;
-        button.verticalCenter = 0;
-        this.uiLayer.addChild(button);
-        button.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
-    };
-    Main.prototype.onButtonClick = function (e) {
-        this.showPannel("Button Click!");
-    };
-    Main.prototype.showPannel = function (title) {
-        var renderer = this.renderer2;
-        var panel = new eui.Panel();
-        panel.title = title;
-        panel.horizontalCenter = 0;
-        panel.verticalCenter = 0;
-        this.uiLayer.addChild(panel);
-    };
-    Main.prototype.createBitmapByName = function (name) {
-        var result = new egret.Bitmap();
-        var texture = RES.getRes(name);
-        result.texture = texture;
-        return result;
-    };
-    Main.prototype.startAnimation = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var result, parser, textflowArr, textfield, count, change;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, RES.getResAsync("D2Resource/config/description.json")];
-                    case 1:
-                        result = _a.sent();
-                        parser = new egret.HtmlTextParser();
-                        textflowArr = result.map(function (text) { return parser.parse(text); });
-                        textfield = this.textfield;
-                        count = -1;
-                        change = function () {
-                            count++;
-                            if (count >= textflowArr.length) {
-                                count = 0;
-                            }
-                            var textFlow = textflowArr[count];
-                            // 切换描述内容
-                            // Switch to described content
-                            textfield.textFlow = textFlow;
-                            var tw = egret.Tween.get(textfield);
-                            tw.to({ "alpha": 1 }, 200);
-                            tw.wait(2000);
-                            tw.to({ "alpha": 0 }, 200);
-                            tw.call(change, _this);
-                        };
-                        change();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
     Main.prototype.onUpdate = function (delta) {
-        this.timer += delta;
-        var _sin = Math.sin(this.timer * 0.5);
-        var _cos = -Math.cos(this.timer * 0.5);
-        if (this.camera) {
-            var renderer = this.renderer2;
-            this.cube.setLocalEulerAngles(_sin * 45, _cos * 45, 0);
-            this.camera.calcScreenPosFromWorldPos(this.app, this.cube.getPosition(), this.screenPos);
-            renderer.screenPosToUIPos(this.screenPos, this.screenPos);
-            // console.log(this.screenPos.x, this.screenPos.y);
-            // mask 跟随
-            this.mask.x = this.screenPos.x;
-            this.mask.y = this.screenPos.y;
-            if (this.app.inputManager.wasReleased()) {
-                var touch = this.app.inputManager.getTouchPoint();
-                if (!renderer.checkEventThrough(touch.x, touch.y)) {
-                    var ray = this.camera.creatRayByScreen(touch, this.app);
-                    var pickInfo = this.scene.pick(ray);
-                    if (pickInfo && pickInfo.pickedtran == this.cube) {
-                        this.showPannel("Cube Click!");
-                    }
-                }
-            }
-        }
+        // this.timer += delta;
+        // let _sin = Math.sin(this.timer * 0.5);
+        // let _cos = -Math.cos(this.timer * 0.5);
+        // if (this.camera) {
+        //     let renderer = this.renderer2;
+        //     this.cube.setLocalEulerAngles(_sin * 45, _cos * 45, 0);
+        //     this.camera.calcScreenPosFromWorldPos(this.app, this.cube.getPosition(), this.screenPos);
+        //     renderer.screenPosToUIPos(this.screenPos, this.screenPos);
+        // }
     };
     Main.prototype.isClosed = function () {
         return false;
@@ -363,3 +185,4 @@ app.start(div);
 app.showFps();
 app.bePlay = true;
 app.addUserCode("Main");
+//# sourceMappingURL=Main.js.map

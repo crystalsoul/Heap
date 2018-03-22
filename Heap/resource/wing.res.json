@@ -1,0 +1,135 @@
+{
+	"groups": [],
+	"resources": [
+		{
+			"url": "config.res.js",
+			"type": "Unknown",
+			"name": "config.res.js"
+		},
+		{
+			"url": "default.res.json",
+			"type": "TextAsset",
+			"name": "default.res.json"
+		},
+		{
+			"url": "default.thm.json",
+			"type": "TextAsset",
+			"name": "default.thm.json"
+		},
+		{
+			"url": "logo.png",
+			"type": "Texture",
+			"name": "logo.png"
+		},
+		{
+			"url": "wing.res.json",
+			"type": "TextAsset",
+			"name": "wing.res.json"
+		},
+		{
+			"url": "shader/shader.assetbundle.json",
+			"type": "Bundle",
+			"name": "shader/shader.assetbundle.json"
+		},
+		{
+			"url": "shader/shader.assetbundle.readme",
+			"type": "Unknown",
+			"name": "shader/shader.assetbundle.readme"
+		},
+		{
+			"url": "shader/resources/example/sample_uvsprite.fs.glsl",
+			"type": "GLFragmentShader",
+			"name": "shader/resources/example/sample_uvsprite.fs.glsl"
+		},
+		{
+			"url": "shader/resources/example/sample_uvsprite.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/example/sample_uvsprite.shader.json"
+		},
+		{
+			"url": "shader/resources/example/sample_uvsprite.vs.glsl",
+			"type": "GLVertexShader",
+			"name": "shader/resources/example/sample_uvsprite.vs.glsl"
+		},
+		{
+			"url": "shader/resources/example/selftimer_uvroll.fs.glsl",
+			"type": "GLFragmentShader",
+			"name": "shader/resources/example/selftimer_uvroll.fs.glsl"
+		},
+		{
+			"url": "shader/resources/example/selftimer_uvroll.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/example/selftimer_uvroll.shader.json"
+		},
+		{
+			"url": "shader/resources/example/selftimer_uvroll.vs.glsl",
+			"type": "GLVertexShader",
+			"name": "shader/resources/example/selftimer_uvroll.vs.glsl"
+		},
+		{
+			"url": "shader/resources/particle/particles_additive.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_additive.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_additive_premultiply.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_additive_premultiply.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_additive_renderall.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_additive_renderall.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_additive_zwriteon.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_additive_zwriteon.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_blend.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_blend.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_blend_premultiply.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_blend_premultiply.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_blend_renderall.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_blend_renderall.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_blend_zwriteon.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_blend_zwriteon.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_diffuse.fs.glsl",
+			"type": "GLFragmentShader",
+			"name": "shader/resources/particle/particles_diffuse.fs.glsl"
+		},
+		{
+			"url": "shader/resources/particle/particles_diffuse.shader.json",
+			"type": "Shader",
+			"name": "shader/resources/particle/particles_diffuse.shader.json"
+		},
+		{
+			"url": "shader/resources/particle/particles_diffuse.vs.glsl",
+			"type": "GLVertexShader",
+			"name": "shader/resources/particle/particles_diffuse.vs.glsl"
+		},
+		{
+			"url": "shader/resources/particle/particles_transparent.fs.glsl",
+			"type": "GLFragmentShader",
+			"name": "shader/resources/particle/particles_transparent.fs.glsl"
+		},
+		{
+			"url": "shader/resources/particle/particles_transparent.vs.glsl",
+			"type": "GLVertexShader",
+			"name": "shader/resources/particle/particles_transparent.vs.glsl"
+		}
+	]
+}

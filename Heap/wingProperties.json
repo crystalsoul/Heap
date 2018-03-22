@@ -1,9 +1,19 @@
 {
-	"resourcePlugin":{
-		"configs":[{
-			"configPath":"resource/default.res.json",
-			"relativePath":"resource/"
-		}]
+	"resourcePlugin": {
+		"configs": [
+			{
+				"configPath": "resource/default.res.json",
+				"relativePath": "resource/"
+			},
+			{
+				"configPath": "resource/wing.res.json",
+				"relativePath": "resource/"
+			},
+			{
+				"configPath": "resource/D2Resource/default.res.json",
+				"relativePath": "resource/"
+			}
+		]
 	},
-	"theme":"resource/default.thm.json"
+	"theme": "resource/default.thm.json"
 }
